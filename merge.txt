@@ -1,0 +1,16 @@
+git checkout master
+git merge testing
+------
+一般是checkout在主线，别的合并进来，主线往前走
+========
+git checkout experiment
+git rebase master
+-------
+对master进行变基，也就是说master为原来的基，rebase之后experiment为新基
+
+git rebase [basebranch][topicbranch] ， 以basebranch为基，将topicbranch的修改应用于basebranch上。
+
+
+
+
+*******谁往前走checkout 谁

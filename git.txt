@@ -1,0 +1,57 @@
+git init	新建.git 文件夹
+
+git add files	未跟踪到暂存状态
+git commit -m 'initial project version'
+git clone 		克隆整个仓库
+
+撤销
+git commit --amend		: repository
+git reset HEAD --<file>	: staged
+git checkout --<file>	: working directory
+
+
+现在总结一下：
+HEAD指向的版本就是当前版本，因此，Git允许我们在版本的历史之间穿梭，使用命令git reset --hard commit_id。
+穿梭前，用git log可以查看提交历史，以便确定要回退到哪个版本。
+要重返未来，用git reflog查看命令历史，以便确定要回到未来的哪个版本。
+
+
+git branch testing		创建testing分支
+	git log --decorate
+git checkout testing		切换分支
+
+git merge ...		合并分支
+git status 			查看冲突
+
+git remote add nickname url
+git fetch nickname (branch_name)		fetch origin(/branch_name with local branch)
+
+git push origin testing: awesomebranch		推送到origin
+git checkout -b testing origin/awesomebranch
+
+git branch -m oldBranchName newBranchName	重命名
+git branch -f BranchName NewPosition		强制改指针
+
+************
+7.如果远程新建了一个分支，本地没有该分支。
+可以利用 git checkout --track origin/branch_name ，这时本地会新建一个分支名叫 branch_name ，会自动跟踪远程的同名分支 branch_name。
+git checkout --track origin/branch_name
+8.如果本地新建了一个分支 branch_name，但是在远程没有。
+这时候 push 和 pull 指令就无法确定该跟踪谁，一般来说我们都会使其跟踪远程同名分支，所以可以利用 git push --set-upstream origin branch_name ，这样就可以自动在远程创建一个 branch_name 分支，然后本地分支会 track 该分支。后面再对该分支使用 push 和 pull 就自动同步。
+git push --set-upstream origin branch_name
+*********
+
+-----
+git rm --cached readme1.txt    删除readme1.txt的跟踪，并保留在本地。
+git rm --f readme1.txt    删除readme1.txt的跟踪，并且删除本地文件。
+-----
+git remote add git@github.com:Ben-SYZ/...
+/*
+About remote repositories
+GitHub's collaborative approach to development depends on publishing commits from your local repository for other people to view, fetch, and update.
+A remote URL is Git's fancy way of saying "the place where your code is stored." That URL could be your repository on GitHub, or another user's fork, or even on a completely different server.
+You can only push to two types of URL addresses:
+An HTTPS URL like https://github.com/user/repo.git
+An SSH URL, like git@github.com:user/repo.git
+*/
+

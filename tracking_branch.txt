@@ -1,0 +1,3 @@
+common branch in subline of remote tracking branch
+	git fetch 			will be ok even if its not a tracking branch
+	git push			creat a new branch

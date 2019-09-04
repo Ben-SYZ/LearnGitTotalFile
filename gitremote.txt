@@ -1,0 +1,58 @@
+https://www.cnblogs.com/chechen/p/9950798.html
+
+tracking branch		跟踪分支一般跟踪remote branch
+remote branch		branch in remote repository
+local branch 		includes tracking branch
+
+1.跟踪远程的一条分支 (本地无，远端有)
+这时本地会新建一个分支名叫 branch_name ，会自动跟踪远程的同名分支 origin/branch_name。
+git checkout --track origin/branch_name
+	git checkout remote_branch (本地无，唯一确定)
+	git checkout --track -b local_branch(new) origin/branch_name （不同名）
+	git checkout -b sf origin/serverfix
+
+2.（本地有、远端有）
+	git branch --set-upstream-to=<remote>/<branch> branch_name
+	git branch --set-upstream-to origin/serverfix branch_name
+	git branch -u <remote>/<branch> branch_name
+无branch_name默认当前分支
+
+3.本地建立一条分支推送到远端 (本地有，远端无)
+这时候 push 和 pull 指令就无法确定该跟踪谁，一般来说我们都会使其跟踪远程同名分支，这样就可以自动在远程创建一个 branch_name 分支，然后本地分支会 track 该分支。后面再对该分支使用 push 和 pull 就自动同步。
+
+	git push <remote> <local branch>:<remote branch>
+
+
+
+LOGs:
+local branch is behind, not tracking
+$git push --set-upstream origin SeeIfTracked
+
+To /home/ben/Coursera/html
+ ! [rejected]        SeeIfTracked -> SeeIfTracked (non-fast-forward)
+error: failed to push some refs to '/home/ben/Coursera/html'
+hint: Updates were rejected because the tip of your current branch is behind
+hint: its remote counterpart. Integrate the remote changes (e.g.
+hint: 'git pull ...') before pushing again.
+hint: See the 'Note about fast-forwards' in 'git push --help' for details.
+
+-------------
+$ git pull
+There is no tracking information for the current branch.
+Please specify which branch you want to merge with.
+See git-pull(1) for details.
+
+    git pull <remote> <branch>
+
+If you wish to set tracking information for this branch you can do so with:
+
+    git branch --set-upstream-to=<remote>/<branch> SeeIfTracked
+++++++
+如果直接 git pull 直接合并下次git pull 还是此提示
+(/fetch??fetch 好像是fetch all)
+++++++
+git branch --set-upstream -to=<remote>/<branch> <localbranch>
+
+
+
+remote.origin.fetch=+refs/heads/*:refs/remotes/origin/*
